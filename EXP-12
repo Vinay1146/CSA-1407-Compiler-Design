@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <string.h>
+
+char s[100];
+int i = 0;
+
+int E(), Ep(), T(), Tp(), F();
+
+int E() {
+    return T() && Ep();
+}
+
+int Ep() {
+    if (s[i] == '+') {
+        i++;
+        return T() && Ep();
+    }
+    return 1;
+}
+
+int T() {
+    return F() && Tp();
+}
+
+int Tp() {
+    if (s[i] == '*') {
+        i++;
+        return F() && Tp();
+    }
+    return 1;
+}
+
+int F() {
+    if (s[i] == 'i' && s[i+1] == 'd') {
+        i += 2;
+        return 1;
+    }
+    if (s[i] == '(') {
+        i++;
+        if (E() && s[i] == ')') {
+            i++;
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int main() {
+    printf("Enter expression: ");
+    scanf("%s", s);
+
+    if (E() && s[i] == '\0')
+        printf("Accepted\n");
+    else
+        printf("Rejected\n");
+
+    return 0;
+}
