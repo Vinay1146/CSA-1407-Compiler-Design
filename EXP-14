@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char a[20], b[20], op, c[20];
+
+    printf("Enter expression (a=b+c): ");
+    scanf("%[^=]=%s", a, c);
+
+    printf("Three Address Code:\n");
+
+    if (sscanf(c, "%[^+]+%s", b, c) == 2)
+        printf("t1 = %s + %s\n", b, c);
+
+    return 0;
+}
