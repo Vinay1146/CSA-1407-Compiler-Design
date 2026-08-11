@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Symbol {
+    char name[20];
+    char type[20];
+} s[20];
+
+int n = 0;
+
+void insert() {
+    printf("Enter name and type: ");
+    scanf("%s %s", s[n].name, s[n].type);
+    n++;
+}
+
+void search() {
+    char name[20];
+    printf("Enter name to search: ");
+    scanf("%s", name);
+
+    for (int i = 0; i < n; i++)
+        if (strcmp(s[i].name, name) == 0) {
+            printf("Found: %s %s\n", s[i].name, s[i].type);
+            return;
+        }
+
+    printf("Not Found\n");
+}
+
+void display() {
+    printf("\nName\tType\n");
+    for (int i = 0; i < n; i++)
+        printf("%s\t%s\n", s[i].name, s[i].type);
+}
+
+int main() {
+    int ch;
+
+    while (1) {
+        printf("\n1.Insert  2.Search  3.Display  4.Exit\n");
+        scanf("%d", &ch);
+
+        if (ch == 1) insert();
+        else if (ch == 2) search();
+        else if (ch == 3) display();
+        else break;
+    }
+
+    return 0;
+}
